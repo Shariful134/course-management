@@ -23,6 +23,10 @@ router.post(
   validateRequest(authValidation.loginValidationschema),
   authControllers.loginUser
 );
+
+// Logout Route
+router.post("/logout", authControllers.logoutUser);
+
 // getAll User
 router.get("/get", authControllers.getAllUser);
 

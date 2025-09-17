@@ -36,6 +36,23 @@ const loginUser = catchAsync(async (req, res, next) => {
   });
 });
 
+// Logout User
+const logoutUser = catchAsync(async (req, res) => {
+  // Clear the refresh token cookie
+  res.clearCookie("refreshToken", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+  });
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: "Logged out successfully!",
+    data: null,
+  });
+});
+
 //getSingle User
 const getSingleUser = catchAsync(async (req, res) => {
   const { id } = req.params;
@@ -87,6 +104,7 @@ export const authControllers = {
   registerUser,
   loginUser,
   getSingleUser,
+  logoutUser,
   getAllUser,
   deleteUser,
   getTotalCountUser,
