@@ -19,11 +19,14 @@ const createStory = catchAsync(async (req: Request, res: Response) => {
 
 // Get All Stories
 const getAllStories = catchAsync(async (req: Request, res: Response) => {
-  const result = await successStoryServices.getAllStoriesFromDB();
+  const { result, meta } = await successStoryServices.getAllStoriesFromDB(
+    req.query
+  );
   sendResponse<ISuccessStory[]>(res, {
     statusCode: StatusCodes.OK,
     success: true,
     message: "All Success Stories Retrieved",
+    meta,
     data: result,
   });
 });

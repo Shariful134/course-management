@@ -2,6 +2,9 @@ import { StatusCodes } from "http-status-codes";
 import AppError from "../../../errors/AppError";
 import { ISuccessStory } from "./success.interface";
 import SuccessStoryModel from "./success.model";
+import QueryBuilder from "../../builder/QueryBuilder";
+
+const SearchableFields = ["studentName", "courseName", "storyText"];
 
 // Create Success Story
 const createStoryIntoDB = async (payload: ISuccessStory) => {
@@ -10,12 +13,17 @@ const createStoryIntoDB = async (payload: ISuccessStory) => {
 };
 
 // Get All Success Stories
-const getAllStoriesFromDB = async () => {
-  const stories = await SuccessStoryModel.find().sort({ createdAt: -1 });
-  if (!stories) {
-    throw new AppError(StatusCodes.NOT_FOUND, "No success stories found");
-  }
-  return stories;
+const getAllStoriesFromDB = async (query: Record<string, unknown>) => {
+  const story = new QueryBuilder(SuccessStoryModel.find(), query)
+    .search(SearchableFields)
+    .filter()
+    .sort()
+    .paginate()
+    .fields();
+  const result = await story.modelQuery;
+  const meta = await story.countTotal();
+
+  return { result, meta };
 };
 
 export const successStoryServices = {
