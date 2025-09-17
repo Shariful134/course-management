@@ -45,6 +45,21 @@ const loginUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0
         data: [accessToken],
     });
 }));
+// Logout User
+const logoutUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    // Clear the refresh token cookie
+    res.clearCookie("refreshToken", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+    });
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_codes_1.StatusCodes.OK,
+        success: true,
+        message: "Logged out successfully!",
+        data: null,
+    });
+}));
 //getSingle User
 const getSingleUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
@@ -92,6 +107,7 @@ exports.authControllers = {
     registerUser,
     loginUser,
     getSingleUser,
+    logoutUser,
     getAllUser,
     deleteUser,
     getTotalCountUser,

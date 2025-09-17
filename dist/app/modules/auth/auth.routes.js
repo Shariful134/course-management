@@ -11,15 +11,17 @@ const auth_1 = __importDefault(require("../../../middlewares/auth"));
 const ValidateRequest_1 = __importDefault(require("../../../middlewares/ValidateRequest"));
 const router = express_1.default.Router();
 // User register
-router.post("/student/register", (0, ValidateRequest_1.default)(auth_validation_1.authValidation.userRegisterSchema), auth_controllers_1.authControllers.registerUser);
+router.post("/register-user", (0, ValidateRequest_1.default)(auth_validation_1.authValidation.userRegisterSchema), auth_controllers_1.authControllers.registerUser);
 // User login
 router.post("/login", (0, ValidateRequest_1.default)(auth_validation_1.authValidation.loginValidationschema), auth_controllers_1.authControllers.loginUser);
+// Logout Route
+router.post("/logout", auth_controllers_1.authControllers.logoutUser);
+// getAll User
+router.get("/get", auth_controllers_1.authControllers.getAllUser);
 // getSingle User
-router.get("/getUser/:id", auth_controllers_1.authControllers.getSingleUser);
-// getAll User with administrator and without admin
-router.get("/getAll/user", auth_controllers_1.authControllers.getAllUser);
+router.get("/get/:id", auth_controllers_1.authControllers.getSingleUser);
 // getAll User with administrator and without admin
 router.get("/getAll/user/total", auth_controllers_1.authControllers.getTotalCountUser);
 // delete User
-router.delete("/delete/user/:id", (0, auth_1.default)("admin", "student"), auth_controllers_1.authControllers.deleteUser);
+router.delete("/delete/user/:id", (0, auth_1.default)("admin"), auth_controllers_1.authControllers.deleteUser);
 exports.AuthRoutes = router;

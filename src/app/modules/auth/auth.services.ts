@@ -11,7 +11,7 @@ import { CustomJwtPayload } from "../../../interface";
 import { Request } from "express";
 import QueryBuilder from "../../builder/QueryBuilder";
 import { IChangePassword, userSearchableFields } from "./auth.constant";
-import emailSender from "./emailSender";
+
 import { EmailTemplates } from "./emailTemplate";
 
 //register User

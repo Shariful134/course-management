@@ -3,7 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.authValidation = exports.userRoleEnum = void 0;
 const zod_1 = require("zod");
 // Role enum fix
-exports.userRoleEnum = zod_1.z.enum(["admin", "student"]).default("student");
+exports.userRoleEnum = zod_1.z
+    .enum(["admin", "student", "instructor"])
+    .default("student");
 // Register Schema
 const userRegisterSchema = zod_1.z.object({
     body: zod_1.z.object({

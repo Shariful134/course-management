@@ -37,7 +37,7 @@ const registerUserIntoDB = (payload) => __awaiter(void 0, void 0, void 0, functi
     if (user) {
         throw new AppError_1.default(http_status_codes_1.StatusCodes.BAD_REQUEST, "Email Already Registered!");
     }
-    const result = yield auth_model_1.User.create(Object.assign(Object.assign({}, payload), { role: "User" }));
+    const result = yield auth_model_1.User.create(payload);
     const _a = result.toObject(), { password } = _a, userData = __rest(_a, ["password"]);
     return userData;
 });
@@ -117,6 +117,14 @@ const deleteUserIntoDB = (id) => __awaiter(void 0, void 0, void 0, function* () 
     }
     return result;
 });
+exports.authServices = {
+    registerUserIntoDB,
+    loginUserIntoDB,
+    getAllUserIntoDB,
+    getSingleUserIntoDB,
+    deleteUserIntoDB,
+    getTotalUserIntoDB,
+};
 // //Updated User
 // const updateUserIntoDB = async (
 //   id: string,
@@ -298,11 +306,3 @@ const deleteUserIntoDB = (id) => __awaiter(void 0, void 0, void 0, function* () 
 //   user.password = newPassword;
 //   return { email: user.email, message: "Password reset successful" };
 // };
-exports.authServices = {
-    registerUserIntoDB,
-    loginUserIntoDB,
-    getAllUserIntoDB,
-    getSingleUserIntoDB,
-    deleteUserIntoDB,
-    getTotalUserIntoDB,
-};

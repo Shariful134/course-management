@@ -15,6 +15,7 @@ const app = (0, express_1.default)();
 exports.corsOptions = {
     origin: [
         "http://localhost:3000",
+        "http://localhost:5173",
         "http://localhost:3001",
         "https://jared4444444-client-one.vercel.app",
     ],
