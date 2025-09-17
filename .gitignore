@@ -1,0 +1,6 @@
+.env 
+node_modules
+distsrc/config/index.ts
+
+.vercel
+
