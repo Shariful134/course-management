@@ -18,7 +18,7 @@ exports.corsOptions = {
         "http://localhost:5173",
         "http://localhost:3001",
         "https://jared4444444-client-one.vercel.app",
-        "https://course-management-frontend-bkvi3tb0h.vercel.app",
+        "https://course-management-frontend-eight.vercel.app",
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: [

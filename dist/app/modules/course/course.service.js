@@ -18,7 +18,7 @@ const AppError_1 = __importDefault(require("../../../errors/AppError"));
 const course_model_1 = __importDefault(require("./course.model"));
 const auth_model_1 = require("../auth/auth.model");
 const QueryBuilder_1 = __importDefault(require("../../builder/QueryBuilder"));
-const SearchableFields = ["description", "title"];
+const SearchableFields = ["description", "title", "category"];
 // Create Course (Admin)
 const createCourseIntoDB = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const instructor = yield auth_model_1.User.findById(payload === null || payload === void 0 ? void 0 : payload.instructor);

@@ -5,7 +5,7 @@ import { ICourse } from "./course.interface";
 import { User } from "../auth/auth.model";
 import QueryBuilder from "../../builder/QueryBuilder";
 
-const SearchableFields = ["description", "title"];
+const SearchableFields = ["description", "title", "category"];
 
 // Create Course (Admin)
 const createCourseIntoDB = async (payload: ICourse) => {
